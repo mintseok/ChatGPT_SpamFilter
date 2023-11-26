@@ -6,6 +6,7 @@ import time
 
 def fileUpload(request):
     if request.method == 'POST':
+        # time.sleep(2)
         print("\nCalled fileUpload from views.py as POST\n")
         #title = request.POST['title']
         #content = request.POST['content']
