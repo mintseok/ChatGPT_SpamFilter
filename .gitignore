@@ -1,2 +1,5 @@
 # 장고 데이터베이스 및 SECRET_KEY 정보
 myproject\my_settings.py
+
+# OpenAI API KEY 정보
+getresult\openai_api_keys.json
