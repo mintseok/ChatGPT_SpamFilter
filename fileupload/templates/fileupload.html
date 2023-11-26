@@ -1,0 +1,61 @@
+<!-- fileupload/templates/fileupload.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div>
+    <div class="home_img_wrapper">
+        <img src="{% static 'img/blue_green_background.jpg' %}" alt="My Image" class="home_img">
+        <div class="home_img_text_1">
+            <h1><a href='/fileupload'>KISA Spam Message Filter</a></h1>
+            <h3><a href='/fileupload'>using ChatGPT</a></h3>
+        </div>
+    </div>
+</div>
+<div class="container" id="main">
+    <hr class="my-5">
+    <h1>ChatGPT를 이용한 SMS 스팸 탐지 방법 연구</h1>
+    <h4>서수연, 황재호, 민무홍</h4>
+    <br><br>
+    <h5>KISA에서 받은 csv 파일을 아래에서 선택하시면 됩니다.</h5>
+    <br>
+</div>
+
+<div class="container">
+    <form method="POST" action="{% url 'fileupload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form fileuploadForm %}
+        <br><br>
+        <input type="submit" id="btn" class="btn btn-primary col-12" value="제출">
+    </form>
+</div>
+
+{% comment %} <div id="loading" style="display: none;">
+    <div id="loading_bar">
+        <img src="{% static 'img/Spin-loading.gif' %}">
+        <p style="font-size: x-large; font-weight: bold;">Loading ...</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#btn").click(function () {
+      $.ajax({
+        url: "/fileupload/",
+        success: function () {
+          $("#loading").show();
+        },
+        beforeSend: function () {
+          $("#loading").show();
+        },
+        complete: function () {
+          $("#loading").hide();
+        },
+      });
+    });
+  });
+</script> {% endcomment %}
+
+{% endblock%}

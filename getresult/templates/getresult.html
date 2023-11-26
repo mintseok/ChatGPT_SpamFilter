@@ -1,0 +1,75 @@
+<!-- getresult/templates/getresult.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div>
+    <div class="home_img_wrapper">
+        <img src="{% static 'img/blue_green_background.jpg' %}" alt="My Image" class="home_img">
+        <div class="home_img_text_1">
+            <h1><a href='/fileupload'>KISA Spam Message Filter</a></h1>
+            <h3><a href='/fileupload'>using ChatGPT</a></h3>
+            <h3 id="data_date">{{ spam_data_name }}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="main">
+    <hr class="my-5">
+    <h1>ChatGPT 스팸 탐지 결과</h1>
+    <br><br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 15%">작성일</th>
+                <th style="width: 10%">라벨</th>
+                <th style="width: 30%">내용</th>
+                <th style="width: 45%">답변</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% if spam_data %}
+                {% for spam in spam_data %}
+                    <tr>
+                        <td>{{spam.date}}<br>{{spam.time}}</td>
+                        <td>{{spam.label}}</td>
+                        <td>{{spam.content}}</td>
+                        <td>{{spam.query_response}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+
+    <br><br><br><br>
+    <div class="row">
+        <div class="col text-center">
+          <button type="button" class="btn btn-info float" onclick="location.href='/fileupload'">재제출하기</button>
+        </div>
+      </div>
+    
+
+    <br><br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">1</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">2</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">3</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">4</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">5</a></li>
+          <li class="page-item"><a class="page-link" href="http://127.0.0.1:5500/index.html#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+{% endblock%}
+
+{% comment %} 
+<button type="button" class="btn btn-primary">전체글</button>
+<button type="button" class="btn btn-info">개념글</button>
+<button type="button" class="btn btn-info">공지</button> 
+{% endcomment %}
